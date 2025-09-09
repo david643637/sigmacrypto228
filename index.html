@@ -12,27 +12,69 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #0a0a0a; /* A very dark gray, almost black */
+            background-color: #0a0a0a;
+            /* A very dark gray, almost black */
         }
 
         .text-glow {
             text-shadow: 0 0 8px rgba(59, 130, 246, 0.6), 0 0 20px rgba(59, 130, 246, 0.4);
         }
-        
+
         .card-glow {
             box-shadow: 0 0 15px rgba(59, 130, 246, 0.2), 0 0 30px rgba(59, 130, 246, 0.1);
         }
-        
+
         .btn-glow:hover {
             box-shadow: 0 0 10px rgba(59, 130, 246, 0.8), 0 0 20px rgba(59, 130, 246, 0.6);
         }
 
-        /* Additional styles for modal animation */
+        /* Modal animation styles */
         .modal {
             transition: opacity 0.3s ease;
         }
+
         .modal-content {
             transition: transform 0.3s ease;
+        }
+
+        /* Scroll animation styles */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .animate-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Background blob animation */
+        .animate-blob {
+            animation: blob 7s infinite;
+        }
+
+        .animation-delay-2000 {
+            animation-delay: -2s;
+        }
+        
+        .animation-delay-4000 {
+            animation-delay: -4s;
+        }
+
+        @keyframes blob {
+	        0% {
+		        transform: translate(0px, 0px) scale(1);
+	        }
+	        33% {
+		        transform: translate(30px, -50px) scale(1.1);
+	        }
+	        66% {
+		        transform: translate(-20px, 20px) scale(0.9);
+	        }
+	        100% {
+		        transform: translate(0px, 0px) scale(1);
+	        }
         }
     </style>
 </head>
@@ -44,7 +86,9 @@
         <div class="container mx-auto flex justify-between items-center p-4">
             <h1 class="text-2xl font-bold text-white tracking-wider">
                 <a href="#hero" class="flex items-center gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-500"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-500">
+                        <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                    </svg>
                     David Crypto
                 </a>
             </h1>
@@ -53,18 +97,22 @@
                 <a href="#pricing" class="text-gray-300 hover:text-blue-400 transition-colors">Services</a>
                 <a href="#why-crypto" class="text-gray-300 hover:text-blue-400 transition-colors">Why Crypto?</a>
                 <a href="#contact" class="text-gray-300 hover:text-blue-400 transition-colors">Contact</a>
-                 <!-- Auth buttons for desktop -->
+                <!-- Auth buttons for desktop -->
                 <div id="auth-container" class="flex items-center gap-2">
                     <button id="login-btn" class="text-gray-300 hover:text-blue-400 transition-colors py-2 px-4">Login</button>
                     <button id="signup-btn" class="bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors btn-glow">Sign Up</button>
                 </div>
                 <div id="user-info-container" class="hidden items-center gap-4">
-                    <span id="user-greeting" class="text-white"></span>
+                    <span id="user-greeting" class="text-white font-medium"></span>
                     <button id="logout-btn" class="bg-red-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-red-700 transition-colors">Logout</button>
                 </div>
             </nav>
             <button id="mobile-menu-button" class="md:hidden p-2 rounded-md text-gray-300 hover:bg-gray-800">
-                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="4" x2="20" y1="12" y2="12" />
+                    <line x1="4" x2="20" y1="6" y2="6" />
+                    <line x1="4" x2="20" y1="18" y2="18" />
+                </svg>
             </button>
         </div>
         <!-- Mobile Menu -->
@@ -79,21 +127,21 @@
     <main>
         <!-- Hero Section -->
         <section id="hero" class="relative min-h-screen flex items-center justify-center text-center overflow-hidden">
-             <div class="absolute inset-0 bg-black opacity-60"></div>
-             <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-black opacity-60"></div>
+            <div class="absolute inset-0 z-0">
                 <!-- Abstract background graphic -->
-                 <div class="absolute top-0 left-0 w-64 h-64 bg-blue-900 rounded-full mix-blend-screen filter blur-3xl opacity-30 animate-blob"></div>
-                 <div class="absolute top-0 right-0 w-64 h-64 bg-indigo-900 rounded-full mix-blend-screen filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
-                 <div class="absolute bottom-20 left-20 w-64 h-64 bg-purple-900 rounded-full mix-blend-screen filter blur-3xl opacity-30 animate-blob animation-delay-4000"></div>
+                <div class="absolute top-0 left-0 w-72 h-72 bg-blue-900 rounded-full mix-blend-screen filter blur-3xl opacity-30 animate-blob"></div>
+                <div class="absolute top-0 right-0 w-72 h-72 bg-indigo-900 rounded-full mix-blend-screen filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
+                <div class="absolute bottom-20 left-20 w-72 h-72 bg-purple-900 rounded-full mix-blend-screen filter blur-3xl opacity-30 animate-blob animation-delay-4000"></div>
             </div>
             <div class="relative z-10 container mx-auto px-6">
-                <h2 class="text-4xl md:text-6xl font-black text-white leading-tight mb-4 text-glow">
+                <h2 class="text-4xl md:text-6xl font-black text-white leading-tight mb-4 text-glow animate-on-scroll">
                     Unlock the Secrets of Digital Finance
                 </h2>
-                <p class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-8">
+                <p class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-8 animate-on-scroll" style="transition-delay: 150ms;">
                     Master cryptocurrency trading and blockchain technology with personalized, one-on-one coaching. Start your journey to financial empowerment today.
                 </p>
-                <a href="#pricing" class="bg-blue-600 text-white font-bold py-3 px-8 rounded-full hover:bg-blue-700 transition-all duration-300 text-lg btn-glow">
+                <a href="#pricing" class="bg-blue-600 text-white font-bold py-3 px-8 rounded-full hover:bg-blue-700 transition-all duration-300 text-lg btn-glow animate-on-scroll" style="transition-delay: 300ms;">
                     View Coaching Plans
                 </a>
             </div>
@@ -102,7 +150,7 @@
         <!-- About Section -->
         <section id="about" class="py-20 bg-gray-900">
             <div class="container mx-auto px-6 text-center">
-                <div class="max-w-4xl mx-auto">
+                <div class="max-w-4xl mx-auto animate-on-scroll">
                     <img src="https://placehold.co/120x120/1d4ed8/ffffff?text=DC" alt="David Crypto" class="w-32 h-32 rounded-full mx-auto mb-6 border-4 border-blue-500 shadow-lg">
                     <h3 class="text-3xl font-bold text-white mb-3">About David</h3>
                     <p class="text-gray-400 leading-relaxed">
@@ -115,66 +163,66 @@
         <!-- Pricing Section -->
         <section id="pricing" class="py-20">
             <div class="container mx-auto px-6">
-                <div class="text-center mb-12">
+                <div class="text-center mb-12 animate-on-scroll">
                     <h2 class="text-4xl font-bold text-white">Coaching Packages</h2>
                     <p class="text-gray-400 mt-2">Choose the plan that's right for your crypto journey.</p>
                 </div>
 
                 <div class="flex flex-col md:flex-row justify-center items-center gap-8">
                     <!-- Pricing Card 1 -->
-                    <div class="bg-gray-900 border border-gray-700 rounded-xl p-8 w-full max-w-md transform hover:-translate-y-2 transition-transform duration-300 card-glow">
+                    <div class="bg-gray-900 border border-gray-700 rounded-xl p-8 w-full max-w-md transform hover:-translate-y-2 transition-transform duration-300 card-glow animate-on-scroll">
                         <h3 class="text-2xl font-bold text-white">Starter Session</h3>
                         <p class="text-blue-400 font-semibold mt-1">Perfect for Beginners</p>
                         <div class="text-5xl font-black text-white my-6">$30<span class="text-lg font-medium text-gray-400">/session</span></div>
                         <ul class="space-y-4 text-gray-300">
-                            <li class="flex items-center"><svg class="w-6 h-6 text-blue-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>60-Minute Live Video Call</li>
-                            <li class="flex items-center"><svg class="w-6 h-6 text-blue-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Crypto & Blockchain Fundamentals</li>
-                            <li class="flex items-center"><svg class="w-6 h-6 text-blue-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Setting Up Secure Wallets</li>
-                            <li class="flex items-center"><svg class="w-6 h-6 text-blue-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Basic Buying & Selling Guide</li>
-                             <li class="flex items-center"><svg class="w-6 h-6 text-blue-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Open Q&A Session</li>
+                            <li class="flex items-center"><svg class="w-6 h-6 text-blue-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>60-Minute Live Video Call</li>
+                            <li class="flex items-center"><svg class="w-6 h-6 text-blue-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Crypto & Blockchain Fundamentals</li>
+                            <li class="flex items-center"><svg class="w-6 h-6 text-blue-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Setting Up Secure Wallets</li>
+                            <li class="flex items-center"><svg class="w-6 h-6 text-blue-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Basic Buying & Selling Guide</li>
+                            <li class="flex items-center"><svg class="w-6 h-6 text-blue-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Open Q&A Session</li>
                         </ul>
                         <a href="#contact" class="block w-full text-center mt-8 bg-gray-700 text-white font-bold py-3 px-6 rounded-lg hover:bg-gray-600 transition-colors">Book Now</a>
                     </div>
 
                     <!-- Pricing Card 2 -->
-                    <div class="bg-blue-600 text-white rounded-xl p-8 w-full max-w-md transform hover:-translate-y-2 transition-transform duration-300 shadow-2xl relative">
-                         <div class="absolute top-0 right-0 -mt-3 mr-3 bg-white text-blue-600 font-bold text-xs py-1 px-3 rounded-full">POPULAR</div>
+                    <div class="bg-blue-600 text-white rounded-xl p-8 w-full max-w-md transform hover:-translate-y-2 transition-transform duration-300 shadow-2xl relative animate-on-scroll" style="transition-delay: 150ms;">
+                        <div class="absolute top-0 right-0 -mt-3 mr-3 bg-white text-blue-600 font-bold text-xs py-1 px-3 rounded-full">POPULAR</div>
                         <h3 class="text-2xl font-bold">Pro Trader Session</h3>
                         <p class="text-blue-200 font-semibold mt-1">For Aspiring Traders</p>
                         <div class="text-5xl font-black my-6">$45<span class="text-lg font-medium text-blue-100">/session</span></div>
                         <ul class="space-y-4">
-                            <li class="flex items-center"><svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>90-Minute Live Video Call</li>
-                            <li class="flex items-center"><svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Includes <strong class="font-semibold mx-1">Everything</strong> in Starter</li>
-                            <li class="flex items-center"><svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Technical Analysis Deep Dive</li>
-                            <li class="flex items-center"><svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Effective Risk Management</li>
-                            <li class="flex items-center"><svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Intro to DeFi, NFTs, and Altcoins</li>
+                            <li class="flex items-center"><svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>90-Minute Live Video Call</li>
+                            <li class="flex items-center"><svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Includes <strong class="font-semibold mx-1">Everything</strong> in Starter</li>
+                            <li class="flex items-center"><svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Technical Analysis Deep Dive</li>
+                            <li class="flex items-center"><svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Effective Risk Management</li>
+                            <li class="flex items-center"><svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Intro to DeFi, NFTs, and Altcoins</li>
                         </ul>
                         <a href="#contact" class="block w-full text-center mt-8 bg-white text-blue-600 font-bold py-3 px-6 rounded-lg hover:bg-gray-200 transition-colors btn-glow">Book Now</a>
                     </div>
                 </div>
             </div>
         </section>
-        
+
         <!-- Why Crypto Section -->
         <section id="why-crypto" class="py-20 bg-gray-900">
             <div class="container mx-auto px-6">
-                 <div class="text-center mb-12">
+                <div class="text-center mb-12 animate-on-scroll">
                     <h2 class="text-4xl font-bold text-white">Why Learn About Crypto?</h2>
                     <p class="text-gray-400 mt-2">It's more than just an investment; it's the future of finance.</p>
                 </div>
                 <div class="grid md:grid-cols-3 gap-8 text-center">
-                    <div class="bg-gray-800 p-6 rounded-lg">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-auto text-blue-500 mb-4"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Z"/><path d="M12 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12Z"/><path d="M12 12a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"/></svg>
+                    <div class="bg-gray-800 p-6 rounded-lg animate-on-scroll">
+                         <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="mx-auto text-blue-500 mb-4"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Z"/><path d="M12 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12Z"/><path d="M12 12a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"/></svg>
                         <h4 class="text-xl font-semibold text-white mb-2">Decentralization</h4>
                         <p class="text-gray-400">Operate outside the control of traditional banks and governments, giving you more control over your assets.</p>
                     </div>
-                     <div class="bg-gray-800 p-6 rounded-lg">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-auto text-blue-500 mb-4"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                    <div class="bg-gray-800 p-6 rounded-lg animate-on-scroll" style="transition-delay: 150ms;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="mx-auto text-blue-500 mb-4"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
                         <h4 class="text-xl font-semibold text-white mb-2">Financial Innovation</h4>
                         <p class="text-gray-400">Be at the forefront of new technologies like DeFi (Decentralized Finance) and NFTs that are reshaping industries.</p>
                     </div>
-                     <div class="bg-gray-800 p-6 rounded-lg">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-auto text-blue-500 mb-4"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Z"/><path d="m15 12-4-4"/><path d="m15 12 4 4"/><path d="m15 12-4 4"/></svg>
+                    <div class="bg-gray-800 p-6 rounded-lg animate-on-scroll" style="transition-delay: 300ms;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="mx-auto text-blue-500 mb-4"><path d="M2.5 14.5A2.5 2.5 0 0 1 0 12a2.5 2.5 0 0 1 2.5-2.5h19A2.5 2.5 0 0 1 24 12a2.5 2.5 0 0 1-2.5 2.5Z"/><path d="M21.5 9.5A2.5 2.5 0 0 1 24 12a2.5 2.5 0 0 1-2.5 2.5h-19A2.5 2.5 0 0 1 0 12a2.5 2.5 0 0 1 2.5-2.5Z"/><path d="m14 2-3 3 3 3"/><path d="m10 22 3-3-3-3"/></svg>
                         <h4 class="text-xl font-semibold text-white mb-2">Growth Potential</h4>
                         <p class="text-gray-400">While volatile, the crypto market offers unique opportunities for growth and wealth generation for the informed investor.</p>
                     </div>
@@ -183,25 +231,25 @@
         </section>
 
     </main>
-    
+
     <!-- Footer -->
     <footer id="contact" class="bg-black py-10">
         <div class="container mx-auto px-6 text-center text-gray-400">
             <h3 class="text-2xl font-bold text-white mb-3">Ready to Start?</h3>
             <p class="mb-6">Contact me to schedule your first session or ask any questions.</p>
             <a href="mailto:david.crypto.teacher@example.com" class="text-lg text-blue-400 hover:text-blue-300 transition-colors">david.crypto.teacher@example.com</a>
-             <div class="flex justify-center space-x-6 mt-6">
-                <a href="#" class="text-gray-400 hover:text-white transition-colors">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 1.4 2.8 3.2 3 5.2-1.4 1.4-3.2 2.2-5.2 2.6-.4 4.3-2.1 6.3-4.2 7.6-2.6-1.3-4.4-3.5-5.8-6.4-3.2-1.2-5.4-3.6-6.4-6.2 2.6-1.5 4.8-3.2 6.4-5.2C9 6.4 6.8 5.2 5.2 4.2c2.1-.8 4.2-1.2 6.4-1.2 3.2 0 5.4 1.2 7.4 2.4Z"/><path d="M12 2v20"/><path d="M20 12H4"/></svg>
+            <div class="mt-8 text-sm text-gray-500">
+                <p>&copy; 2024 David Crypto. All Rights Reserved.</p>
+                <p>Disclaimer: Cryptocurrency investment is subject to high market risk. Please trade cautiously.</p>
+            </div>
+            <div class="mt-8">
+                <a href="https://danyokkk.github.io" target="_blank" rel="noopener noreferrer" class="text-blue-500 text-glow text-lg font-semibold transition-all hover:text-blue-400">
+                    made by david babijon
                 </a>
-                <a href="#" class="text-gray-400 hover:text-white transition-colors">
-                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
-                </a>
-             </div>
-            <p class="mt-8 text-sm text-gray-500">&copy; 2024 David Crypto. All Rights Reserved. <br>Disclaimer: Cryptocurrency investment is subject to high market risk. Please trade cautiously.</p>
+            </div>
         </div>
     </footer>
-    
+
     <!-- Modals -->
     <!-- Signup Modal -->
     <div id="signup-modal" class="modal hidden fixed inset-0 bg-black bg-opacity-80 z-50 flex justify-center items-center p-4 opacity-0 pointer-events-none">
@@ -214,14 +262,10 @@
                     <input type="text" id="signup-username" required class="w-full bg-gray-800 border border-gray-700 rounded-lg p-3 text-white focus:ring-2 focus:ring-blue-500 focus:outline-none">
                 </div>
                 <div>
-                    <label for="signup-email" class="block text-sm font-medium text-gray-300 mb-1">Email</label>
-                    <input type="email" id="signup-email" required class="w-full bg-gray-800 border border-gray-700 rounded-lg p-3 text-white focus:ring-2 focus:ring-blue-500 focus:outline-none">
-                </div>
-                <div>
                     <label for="signup-password" class="block text-sm font-medium text-gray-300 mb-1">Password</label>
                     <input type="password" id="signup-password" required minlength="6" class="w-full bg-gray-800 border border-gray-700 rounded-lg p-3 text-white focus:ring-2 focus:ring-blue-500 focus:outline-none">
                 </div>
-                <p id="signup-error" class="text-red-400 text-sm h-5"></p>
+                <p class="text-red-400 text-sm h-5"></p>
                 <button type="submit" class="w-full bg-blue-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors btn-glow">Sign Up</button>
             </form>
         </div>
@@ -234,181 +278,141 @@
             <h2 class="text-3xl font-bold text-white mb-6 text-center">Welcome Back</h2>
             <form id="login-form" class="space-y-4">
                 <div>
-                    <label for="login-email" class="block text-sm font-medium text-gray-300 mb-1">Email</label>
-                    <input type="email" id="login-email" required class="w-full bg-gray-800 border border-gray-700 rounded-lg p-3 text-white focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                    <label for="login-username" class="block text-sm font-medium text-gray-300 mb-1">Username</label>
+                    <input type="text" id="login-username" required class="w-full bg-gray-800 border border-gray-700 rounded-lg p-3 text-white focus:ring-2 focus:ring-blue-500 focus:outline-none">
                 </div>
                 <div>
                     <label for="login-password" class="block text-sm font-medium text-gray-300 mb-1">Password</label>
                     <input type="password" id="login-password" required class="w-full bg-gray-800 border border-gray-700 rounded-lg p-3 text-white focus:ring-2 focus:ring-blue-500 focus:outline-none">
                 </div>
-                <p id="login-error" class="text-red-400 text-sm h-5"></p>
+                <p class="text-red-400 text-sm h-5"></p>
                 <button type="submit" class="w-full bg-blue-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors btn-glow">Login</button>
             </form>
         </div>
     </div>
 
-    <script type="module">
-        // Firebase Imports
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { 
-            getAuth, 
-            onAuthStateChanged,
-            createUserWithEmailAndPassword,
-            signInWithEmailAndPassword,
-            signOut
-        } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { 
-            getFirestore, 
-            doc, 
-            setDoc,
-            getDoc 
-        } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- UI Elements ---
+            const authContainer = document.getElementById('auth-container');
+            const userInfoContainer = document.getElementById('user-info-container');
+            const userGreeting = document.getElementById('user-greeting');
+            const logoutBtn = document.getElementById('logout-btn');
 
-        // --- Firebase Configuration ---
-        // These variables are placeholders and will be provided by the environment.
-        const firebaseConfig = typeof __firebase_config !== 'undefined' 
-            ? JSON.parse(__firebase_config) 
-            : { apiKey: "YOUR_API_KEY", authDomain: "YOUR_AUTH_DOMAIN", projectId: "YOUR_PROJECT_ID" }; // Fallback for local dev
-        
-        // --- Firebase Initialization ---
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
+            const signupModal = document.getElementById('signup-modal');
+            const loginModal = document.getElementById('login-modal');
 
-        // --- UI Elements ---
-        const authContainer = document.getElementById('auth-container');
-        const userInfoContainer = document.getElementById('user-info-container');
-        const userGreeting = document.getElementById('user-greeting');
-        const logoutBtn = document.getElementById('logout-btn');
+            const openSignupBtn = document.getElementById('signup-btn');
+            const openLoginBtn = document.getElementById('login-btn');
 
-        const signupModal = document.getElementById('signup-modal');
-        const loginModal = document.getElementById('login-modal');
-        
-        const openSignupBtn = document.getElementById('signup-btn');
-        const openLoginBtn = document.getElementById('login-btn');
+            const closeSignupModalBtn = document.getElementById('close-signup-modal');
+            const closeLoginModalBtn = document.getElementById('close-login-modal');
 
-        const closeSignupModalBtn = document.getElementById('close-signup-modal');
-        const closeLoginModalBtn = document.getElementById('close-login-modal');
+            const signupForm = document.getElementById('signup-form');
+            const loginForm = document.getElementById('login-form');
 
-        const signupForm = document.getElementById('signup-form');
-        const loginForm = document.getElementById('login-form');
+            // --- Modal Logic ---
+            const openModal = (modal) => {
+                modal.classList.remove('hidden');
+                setTimeout(() => {
+                    modal.classList.remove('opacity-0', 'pointer-events-none');
+                    modal.querySelector('.modal-content').classList.remove('scale-95');
+                }, 10);
+            };
 
-        const signupError = document.getElementById('signup-error');
-        const loginError = document.getElementById('login-error');
+            const closeModal = (modal) => {
+                modal.classList.add('opacity-0');
+                modal.querySelector('.modal-content').classList.add('scale-95');
+                setTimeout(() => {
+                    modal.classList.add('hidden', 'pointer-events-none');
+                }, 300);
+            };
 
-        // --- Modal Logic ---
-        const openModal = (modal) => {
-            modal.classList.remove('hidden');
-            setTimeout(() => {
-                modal.classList.remove('opacity-0', 'pointer-events-none');
-                modal.querySelector('.modal-content').classList.remove('scale-95');
-            }, 10);
-        };
-        
-        const closeModal = (modal) => {
-            modal.classList.add('opacity-0');
-            modal.querySelector('.modal-content').classList.add('scale-95');
-             setTimeout(() => {
-                modal.classList.add('hidden', 'pointer-events-none');
-            }, 300);
-        };
+            openSignupBtn.addEventListener('click', () => openModal(signupModal));
+            openLoginBtn.addEventListener('click', () => openModal(loginModal));
 
-        openSignupBtn.addEventListener('click', () => openModal(signupModal));
-        openLoginBtn.addEventListener('click', () => openModal(loginModal));
-        
-        closeSignupModalBtn.addEventListener('click', () => closeModal(signupModal));
-        closeLoginModalBtn.addEventListener('click', () => closeModal(loginModal));
+            closeSignupModalBtn.addEventListener('click', () => closeModal(signupModal));
+            closeLoginModalBtn.addEventListener('click', () => closeModal(loginModal));
 
-        // Close modal on outside click
-        window.addEventListener('click', (e) => {
-            if (e.target === signupModal) closeModal(signupModal);
-            if (e.target === loginModal) closeModal(loginModal);
-        });
+            window.addEventListener('click', (e) => {
+                if (e.target === signupModal) closeModal(signupModal);
+                if (e.target === loginModal) closeModal(loginModal);
+            });
 
-        // --- Authentication Logic ---
-        onAuthStateChanged(auth, async (user) => {
-            if (user) {
-                // User is signed in
-                const userDocRef = doc(db, "users", user.uid);
-                const userDoc = await getDoc(userDocRef);
-                if(userDoc.exists()) {
-                     userGreeting.textContent = `Hi, ${userDoc.data().username}`;
+            // --- FAKE Authentication Logic ---
+            const updateNavUI = (username) => {
+                if (username) {
+                    userGreeting.textContent = `Hi, ${username}`;
+                    authContainer.classList.add('hidden');
+                    userInfoContainer.classList.remove('hidden');
+                    userInfoContainer.classList.add('flex');
                 } else {
-                     userGreeting.textContent = `Hi, ${user.email.split('@')[0]}`;
+                    authContainer.classList.remove('hidden');
+                    userInfoContainer.classList.add('hidden');
+                    userInfoContainer.classList.remove('flex');
                 }
-                
-                authContainer.classList.add('hidden');
-                userInfoContainer.classList.remove('hidden');
-                userInfoContainer.classList.add('flex');
-            } else {
-                // User is signed out
-                authContainer.classList.remove('hidden');
-                userInfoContainer.classList.add('hidden');
-                userInfoContainer.classList.remove('flex');
-                userGreeting.textContent = '';
-            }
-        });
+            };
 
-        // Sign up
-        signupForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            signupError.textContent = '';
-            const username = signupForm['signup-username'].value;
-            const email = signupForm['signup-email'].value;
-            const password = signupForm['signup-password'].value;
-            
-            try {
-                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-                const user = userCredential.user;
-                // Save username to Firestore
-                await setDoc(doc(db, "users", user.uid), {
-                    username: username,
-                    email: email
-                });
+            // Check session storage on page load
+            const loggedInUser = sessionStorage.getItem('loggedInUser');
+            if (loggedInUser) {
+                updateNavUI(loggedInUser);
+            }
+
+            // Fake Sign up
+            signupForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const username = signupForm['signup-username'].value.trim();
+                sessionStorage.setItem('loggedInUser', username);
+                updateNavUI(username);
                 closeModal(signupModal);
                 signupForm.reset();
-            } catch (error) {
-                signupError.textContent = error.message;
-            }
-        });
+            });
 
-        // Login
-        loginForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            loginError.textContent = '';
-            const email = loginForm['login-email'].value;
-            const password = loginForm['login-password'].value;
-            
-            try {
-                await signInWithEmailAndPassword(auth, email, password);
+            // Fake Login
+            loginForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const username = loginForm['login-username'].value.trim();
+                sessionStorage.setItem('loggedInUser', username);
+                updateNavUI(username);
                 closeModal(loginModal);
                 loginForm.reset();
-            } catch (error) {
-                loginError.textContent = error.message;
-            }
-        });
-
-        // Logout
-        logoutBtn.addEventListener('click', async () => {
-            try {
-                await signOut(auth);
-            } catch (error) {
-                console.error("Error signing out:", error);
-            }
-        });
-
-        // --- Mobile Menu Logic ---
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-        const mobileLinks = mobileMenu.getElementsByTagName('a');
-        for(let link of mobileLinks) {
-            link.addEventListener('click', () => {
-                 mobileMenu.classList.add('hidden');
             });
-        }
+
+            // Logout
+            logoutBtn.addEventListener('click', () => {
+                sessionStorage.removeItem('loggedInUser');
+                updateNavUI(null);
+            });
+
+
+            // --- Mobile Menu Logic ---
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            const mobileLinks = mobileMenu.getElementsByTagName('a');
+            for (let link of mobileLinks) {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            }
+
+            // --- Scroll Animation Logic ---
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            const elementsToAnimate = document.querySelectorAll('.animate-on-scroll');
+            elementsToAnimate.forEach(el => observer.observe(el));
+        });
     </script>
 </body>
 
