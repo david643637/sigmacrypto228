@@ -26,13 +26,21 @@
         .btn-glow:hover {
             box-shadow: 0 0 10px rgba(59, 130, 246, 0.8), 0 0 20px rgba(59, 130, 246, 0.6);
         }
+
+        /* Additional styles for modal animation */
+        .modal {
+            transition: opacity 0.3s ease;
+        }
+        .modal-content {
+            transition: transform 0.3s ease;
+        }
     </style>
 </head>
 
 <body class="text-gray-200">
 
     <!-- Header -->
-    <header class="bg-black bg-opacity-50 backdrop-blur-md sticky top-0 z-50">
+    <header class="bg-black bg-opacity-50 backdrop-blur-md sticky top-0 z-40">
         <div class="container mx-auto flex justify-between items-center p-4">
             <h1 class="text-2xl font-bold text-white tracking-wider">
                 <a href="#hero" class="flex items-center gap-2">
@@ -40,11 +48,20 @@
                     David Crypto
                 </a>
             </h1>
-            <nav class="hidden md:flex space-x-6">
+            <nav class="hidden md:flex items-center space-x-6">
                 <a href="#about" class="text-gray-300 hover:text-blue-400 transition-colors">About Me</a>
                 <a href="#pricing" class="text-gray-300 hover:text-blue-400 transition-colors">Services</a>
                 <a href="#why-crypto" class="text-gray-300 hover:text-blue-400 transition-colors">Why Crypto?</a>
                 <a href="#contact" class="text-gray-300 hover:text-blue-400 transition-colors">Contact</a>
+                 <!-- Auth buttons for desktop -->
+                <div id="auth-container" class="flex items-center gap-2">
+                    <button id="login-btn" class="text-gray-300 hover:text-blue-400 transition-colors py-2 px-4">Login</button>
+                    <button id="signup-btn" class="bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors btn-glow">Sign Up</button>
+                </div>
+                <div id="user-info-container" class="hidden items-center gap-4">
+                    <span id="user-greeting" class="text-white"></span>
+                    <button id="logout-btn" class="bg-red-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-red-700 transition-colors">Logout</button>
+                </div>
             </nav>
             <button id="mobile-menu-button" class="md:hidden p-2 rounded-md text-gray-300 hover:bg-gray-800">
                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
@@ -184,17 +201,208 @@
             <p class="mt-8 text-sm text-gray-500">&copy; 2024 David Crypto. All Rights Reserved. <br>Disclaimer: Cryptocurrency investment is subject to high market risk. Please trade cautiously.</p>
         </div>
     </footer>
+    
+    <!-- Modals -->
+    <!-- Signup Modal -->
+    <div id="signup-modal" class="modal hidden fixed inset-0 bg-black bg-opacity-80 z-50 flex justify-center items-center p-4 opacity-0 pointer-events-none">
+        <div class="modal-content bg-gray-900 p-8 rounded-lg w-full max-w-md relative shadow-xl transform scale-95">
+            <button id="close-signup-modal" class="absolute top-4 right-4 text-gray-400 hover:text-white text-3xl leading-none">&times;</button>
+            <h2 class="text-3xl font-bold text-white mb-6 text-center">Create Account</h2>
+            <form id="signup-form" class="space-y-4">
+                <div>
+                    <label for="signup-username" class="block text-sm font-medium text-gray-300 mb-1">Username</label>
+                    <input type="text" id="signup-username" required class="w-full bg-gray-800 border border-gray-700 rounded-lg p-3 text-white focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                </div>
+                <div>
+                    <label for="signup-email" class="block text-sm font-medium text-gray-300 mb-1">Email</label>
+                    <input type="email" id="signup-email" required class="w-full bg-gray-800 border border-gray-700 rounded-lg p-3 text-white focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                </div>
+                <div>
+                    <label for="signup-password" class="block text-sm font-medium text-gray-300 mb-1">Password</label>
+                    <input type="password" id="signup-password" required minlength="6" class="w-full bg-gray-800 border border-gray-700 rounded-lg p-3 text-white focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                </div>
+                <p id="signup-error" class="text-red-400 text-sm h-5"></p>
+                <button type="submit" class="w-full bg-blue-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors btn-glow">Sign Up</button>
+            </form>
+        </div>
+    </div>
 
-    <script>
-        // Simple mobile menu toggle
+    <!-- Login Modal -->
+    <div id="login-modal" class="modal hidden fixed inset-0 bg-black bg-opacity-80 z-50 flex justify-center items-center p-4 opacity-0 pointer-events-none">
+        <div class="modal-content bg-gray-900 p-8 rounded-lg w-full max-w-md relative shadow-xl transform scale-95">
+            <button id="close-login-modal" class="absolute top-4 right-4 text-gray-400 hover:text-white text-3xl leading-none">&times;</button>
+            <h2 class="text-3xl font-bold text-white mb-6 text-center">Welcome Back</h2>
+            <form id="login-form" class="space-y-4">
+                <div>
+                    <label for="login-email" class="block text-sm font-medium text-gray-300 mb-1">Email</label>
+                    <input type="email" id="login-email" required class="w-full bg-gray-800 border border-gray-700 rounded-lg p-3 text-white focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                </div>
+                <div>
+                    <label for="login-password" class="block text-sm font-medium text-gray-300 mb-1">Password</label>
+                    <input type="password" id="login-password" required class="w-full bg-gray-800 border border-gray-700 rounded-lg p-3 text-white focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                </div>
+                <p id="login-error" class="text-red-400 text-sm h-5"></p>
+                <button type="submit" class="w-full bg-blue-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors btn-glow">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <script type="module">
+        // Firebase Imports
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { 
+            getAuth, 
+            onAuthStateChanged,
+            createUserWithEmailAndPassword,
+            signInWithEmailAndPassword,
+            signOut
+        } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { 
+            getFirestore, 
+            doc, 
+            setDoc,
+            getDoc 
+        } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // --- Firebase Configuration ---
+        // These variables are placeholders and will be provided by the environment.
+        const firebaseConfig = typeof __firebase_config !== 'undefined' 
+            ? JSON.parse(__firebase_config) 
+            : { apiKey: "YOUR_API_KEY", authDomain: "YOUR_AUTH_DOMAIN", projectId: "YOUR_PROJECT_ID" }; // Fallback for local dev
+        
+        // --- Firebase Initialization ---
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        // --- UI Elements ---
+        const authContainer = document.getElementById('auth-container');
+        const userInfoContainer = document.getElementById('user-info-container');
+        const userGreeting = document.getElementById('user-greeting');
+        const logoutBtn = document.getElementById('logout-btn');
+
+        const signupModal = document.getElementById('signup-modal');
+        const loginModal = document.getElementById('login-modal');
+        
+        const openSignupBtn = document.getElementById('signup-btn');
+        const openLoginBtn = document.getElementById('login-btn');
+
+        const closeSignupModalBtn = document.getElementById('close-signup-modal');
+        const closeLoginModalBtn = document.getElementById('close-login-modal');
+
+        const signupForm = document.getElementById('signup-form');
+        const loginForm = document.getElementById('login-form');
+
+        const signupError = document.getElementById('signup-error');
+        const loginError = document.getElementById('login-error');
+
+        // --- Modal Logic ---
+        const openModal = (modal) => {
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0', 'pointer-events-none');
+                modal.querySelector('.modal-content').classList.remove('scale-95');
+            }, 10);
+        };
+        
+        const closeModal = (modal) => {
+            modal.classList.add('opacity-0');
+            modal.querySelector('.modal-content').classList.add('scale-95');
+             setTimeout(() => {
+                modal.classList.add('hidden', 'pointer-events-none');
+            }, 300);
+        };
+
+        openSignupBtn.addEventListener('click', () => openModal(signupModal));
+        openLoginBtn.addEventListener('click', () => openModal(loginModal));
+        
+        closeSignupModalBtn.addEventListener('click', () => closeModal(signupModal));
+        closeLoginModalBtn.addEventListener('click', () => closeModal(loginModal));
+
+        // Close modal on outside click
+        window.addEventListener('click', (e) => {
+            if (e.target === signupModal) closeModal(signupModal);
+            if (e.target === loginModal) closeModal(loginModal);
+        });
+
+        // --- Authentication Logic ---
+        onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                // User is signed in
+                const userDocRef = doc(db, "users", user.uid);
+                const userDoc = await getDoc(userDocRef);
+                if(userDoc.exists()) {
+                     userGreeting.textContent = `Hi, ${userDoc.data().username}`;
+                } else {
+                     userGreeting.textContent = `Hi, ${user.email.split('@')[0]}`;
+                }
+                
+                authContainer.classList.add('hidden');
+                userInfoContainer.classList.remove('hidden');
+                userInfoContainer.classList.add('flex');
+            } else {
+                // User is signed out
+                authContainer.classList.remove('hidden');
+                userInfoContainer.classList.add('hidden');
+                userInfoContainer.classList.remove('flex');
+                userGreeting.textContent = '';
+            }
+        });
+
+        // Sign up
+        signupForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            signupError.textContent = '';
+            const username = signupForm['signup-username'].value;
+            const email = signupForm['signup-email'].value;
+            const password = signupForm['signup-password'].value;
+            
+            try {
+                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                const user = userCredential.user;
+                // Save username to Firestore
+                await setDoc(doc(db, "users", user.uid), {
+                    username: username,
+                    email: email
+                });
+                closeModal(signupModal);
+                signupForm.reset();
+            } catch (error) {
+                signupError.textContent = error.message;
+            }
+        });
+
+        // Login
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            loginError.textContent = '';
+            const email = loginForm['login-email'].value;
+            const password = loginForm['login-password'].value;
+            
+            try {
+                await signInWithEmailAndPassword(auth, email, password);
+                closeModal(loginModal);
+                loginForm.reset();
+            } catch (error) {
+                loginError.textContent = error.message;
+            }
+        });
+
+        // Logout
+        logoutBtn.addEventListener('click', async () => {
+            try {
+                await signOut(auth);
+            } catch (error) {
+                console.error("Error signing out:", error);
+            }
+        });
+
+        // --- Mobile Menu Logic ---
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
-
         mobileMenuButton.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
         });
-        
-        // Close mobile menu when a link is clicked
         const mobileLinks = mobileMenu.getElementsByTagName('a');
         for(let link of mobileLinks) {
             link.addEventListener('click', () => {
