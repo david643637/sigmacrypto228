@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>David Crypto - Trading & Crypto Education</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0a0a; /* A very dark gray, almost black */
+        }
+
+        .text-glow {
+            text-shadow: 0 0 8px rgba(59, 130, 246, 0.6), 0 0 20px rgba(59, 130, 246, 0.4);
+        }
+        
+        .card-glow {
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.2), 0 0 30px rgba(59, 130, 246, 0.1);
+        }
+        
+        .btn-glow:hover {
+            box-shadow: 0 0 10px rgba(59, 130, 246, 0.8), 0 0 20px rgba(59, 130, 246, 0.6);
+        }
+    </style>
+</head>
+
+<body class="text-gray-200">
+
+    <!-- Header -->
+    <header class="bg-black bg-opacity-50 backdrop-blur-md sticky top-0 z-50">
+        <div class="container mx-auto flex justify-between items-center p-4">
+            <h1 class="text-2xl font-bold text-white tracking-wider">
+                <a href="#hero" class="flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-500"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                    David Crypto
+                </a>
+            </h1>
+            <nav class="hidden md:flex space-x-6">
+                <a href="#about" class="text-gray-300 hover:text-blue-400 transition-colors">About Me</a>
+                <a href="#pricing" class="text-gray-300 hover:text-blue-400 transition-colors">Services</a>
+                <a href="#why-crypto" class="text-gray-300 hover:text-blue-400 transition-colors">Why Crypto?</a>
+                <a href="#contact" class="text-gray-300 hover:text-blue-400 transition-colors">Contact</a>
+            </nav>
+            <button id="mobile-menu-button" class="md:hidden p-2 rounded-md text-gray-300 hover:bg-gray-800">
+                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden">
+            <a href="#about" class="block py-2 px-4 text-sm hover:bg-gray-800">About Me</a>
+            <a href="#pricing" class="block py-2 px-4 text-sm hover:bg-gray-800">Services</a>
+            <a href="#why-crypto" class="block py-2 px-4 text-sm hover:bg-gray-800">Why Crypto?</a>
+            <a href="#contact" class="block py-2 px-4 text-sm hover:bg-gray-800">Contact</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="relative min-h-screen flex items-center justify-center text-center overflow-hidden">
+             <div class="absolute inset-0 bg-black opacity-60"></div>
+             <div class="absolute inset-0 z-0">
+                <!-- Abstract background graphic -->
+                 <div class="absolute top-0 left-0 w-64 h-64 bg-blue-900 rounded-full mix-blend-screen filter blur-3xl opacity-30 animate-blob"></div>
+                 <div class="absolute top-0 right-0 w-64 h-64 bg-indigo-900 rounded-full mix-blend-screen filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
+                 <div class="absolute bottom-20 left-20 w-64 h-64 bg-purple-900 rounded-full mix-blend-screen filter blur-3xl opacity-30 animate-blob animation-delay-4000"></div>
+            </div>
+            <div class="relative z-10 container mx-auto px-6">
+                <h2 class="text-4xl md:text-6xl font-black text-white leading-tight mb-4 text-glow">
+                    Unlock the Secrets of Digital Finance
+                </h2>
+                <p class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-8">
+                    Master cryptocurrency trading and blockchain technology with personalized, one-on-one coaching. Start your journey to financial empowerment today.
+                </p>
+                <a href="#pricing" class="bg-blue-600 text-white font-bold py-3 px-8 rounded-full hover:bg-blue-700 transition-all duration-300 text-lg btn-glow">
+                    View Coaching Plans
+                </a>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-20 bg-gray-900">
+            <div class="container mx-auto px-6 text-center">
+                <div class="max-w-4xl mx-auto">
+                    <img src="https://placehold.co/120x120/1d4ed8/ffffff?text=DC" alt="David Crypto" class="w-32 h-32 rounded-full mx-auto mb-6 border-4 border-blue-500 shadow-lg">
+                    <h3 class="text-3xl font-bold text-white mb-3">About David</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        As a seasoned crypto enthusiast and trader with over six years of hands-on experience, I've navigated the highs and lows of the digital asset world. My mission is simple: to demystify the complexities of crypto and trading for you. I believe in a no-hype, fundamentals-first approach, empowering my students with the knowledge and risk management skills needed to confidently participate in this financial revolution.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Section -->
+        <section id="pricing" class="py-20">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold text-white">Coaching Packages</h2>
+                    <p class="text-gray-400 mt-2">Choose the plan that's right for your crypto journey.</p>
+                </div>
+
+                <div class="flex flex-col md:flex-row justify-center items-center gap-8">
+                    <!-- Pricing Card 1 -->
+                    <div class="bg-gray-900 border border-gray-700 rounded-xl p-8 w-full max-w-md transform hover:-translate-y-2 transition-transform duration-300 card-glow">
+                        <h3 class="text-2xl font-bold text-white">Starter Session</h3>
+                        <p class="text-blue-400 font-semibold mt-1">Perfect for Beginners</p>
+                        <div class="text-5xl font-black text-white my-6">$30<span class="text-lg font-medium text-gray-400">/session</span></div>
+                        <ul class="space-y-4 text-gray-300">
+                            <li class="flex items-center"><svg class="w-6 h-6 text-blue-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>60-Minute Live Video Call</li>
+                            <li class="flex items-center"><svg class="w-6 h-6 text-blue-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Crypto & Blockchain Fundamentals</li>
+                            <li class="flex items-center"><svg class="w-6 h-6 text-blue-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Setting Up Secure Wallets</li>
+                            <li class="flex items-center"><svg class="w-6 h-6 text-blue-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Basic Buying & Selling Guide</li>
+                             <li class="flex items-center"><svg class="w-6 h-6 text-blue-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Open Q&A Session</li>
+                        </ul>
+                        <button class="w-full mt-8 bg-gray-700 text-white font-bold py-3 px-6 rounded-lg hover:bg-gray-600 transition-colors">Book Now</button>
+                    </div>
+
+                    <!-- Pricing Card 2 -->
+                    <div class="bg-blue-600 text-white rounded-xl p-8 w-full max-w-md transform hover:-translate-y-2 transition-transform duration-300 shadow-2xl relative">
+                         <div class="absolute top-0 right-0 -mt-3 mr-3 bg-white text-blue-600 font-bold text-xs py-1 px-3 rounded-full">POPULAR</div>
+                        <h3 class="text-2xl font-bold">Pro Trader Session</h3>
+                        <p class="text-blue-200 font-semibold mt-1">For Aspiring Traders</p>
+                        <div class="text-5xl font-black my-6">$45<span class="text-lg font-medium text-blue-100">/session</span></div>
+                        <ul class="space-y-4">
+                            <li class="flex items-center"><svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>90-Minute Live Video Call</li>
+                            <li class="flex items-center"><svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Includes <strong class="font-semibold mx-1">Everything</strong> in Starter</li>
+                            <li class="flex items-center"><svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Technical Analysis Deep Dive</li>
+                            <li class="flex items-center"><svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Effective Risk Management</li>
+                            <li class="flex items-center"><svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Intro to DeFi, NFTs, and Altcoins</li>
+                        </ul>
+                        <button class="w-full mt-8 bg-white text-blue-600 font-bold py-3 px-6 rounded-lg hover:bg-gray-200 transition-colors btn-glow">Book Now</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Why Crypto Section -->
+        <section id="why-crypto" class="py-20 bg-gray-900">
+            <div class="container mx-auto px-6">
+                 <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold text-white">Why Learn About Crypto?</h2>
+                    <p class="text-gray-400 mt-2">It's more than just an investment; it's the future of finance.</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8 text-center">
+                    <div class="bg-gray-800 p-6 rounded-lg">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-auto text-blue-500 mb-4"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Z"/><path d="M12 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12Z"/><path d="M12 12a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"/></svg>
+                        <h4 class="text-xl font-semibold text-white mb-2">Decentralization</h4>
+                        <p class="text-gray-400">Operate outside the control of traditional banks and governments, giving you more control over your assets.</p>
+                    </div>
+                     <div class="bg-gray-800 p-6 rounded-lg">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-auto text-blue-500 mb-4"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                        <h4 class="text-xl font-semibold text-white mb-2">Financial Innovation</h4>
+                        <p class="text-gray-400">Be at the forefront of new technologies like DeFi (Decentralized Finance) and NFTs that are reshaping industries.</p>
+                    </div>
+                     <div class="bg-gray-800 p-6 rounded-lg">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-auto text-blue-500 mb-4"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Z"/><path d="m15 12-4-4"/><path d="m15 12 4 4"/><path d="m15 12-4 4"/></svg>
+                        <h4 class="text-xl font-semibold text-white mb-2">Growth Potential</h4>
+                        <p class="text-gray-400">While volatile, the crypto market offers unique opportunities for growth and wealth generation for the informed investor.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    
+    <!-- Footer -->
+    <footer id="contact" class="bg-black py-10">
+        <div class="container mx-auto px-6 text-center text-gray-400">
+            <h3 class="text-2xl font-bold text-white mb-3">Ready to Start?</h3>
+            <p class="mb-6">Contact me to schedule your first session or ask any questions.</p>
+            <a href="mailto:david.crypto.teacher@example.com" class="text-lg text-blue-400 hover:text-blue-300 transition-colors">david.crypto.teacher@example.com</a>
+             <div class="flex justify-center space-x-6 mt-6">
+                <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 1.4 2.8 3.2 3 5.2-1.4 1.4-3.2 2.2-5.2 2.6-.4 4.3-2.1 6.3-4.2 7.6-2.6-1.3-4.4-3.5-5.8-6.4-3.2-1.2-5.4-3.6-6.4-6.2 2.6-1.5 4.8-3.2 6.4-5.2C9 6.4 6.8 5.2 5.2 4.2c2.1-.8 4.2-1.2 6.4-1.2 3.2 0 5.4 1.2 7.4 2.4Z"/><path d="M12 2v20"/><path d="M20 12H4"/></svg>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+                </a>
+             </div>
+            <p class="mt-8 text-sm text-gray-500">&copy; 2024 David Crypto. All Rights Reserved. <br>Disclaimer: Cryptocurrency investment is subject to high market risk. Please trade cautiously.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Simple mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Close mobile menu when a link is clicked
+        const mobileLinks = mobileMenu.getElementsByTagName('a');
+        for(let link of mobileLinks) {
+            link.addEventListener('click', () => {
+                 mobileMenu.classList.add('hidden');
+            });
+        }
+    </script>
+</body>
+
+</html>
